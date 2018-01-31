@@ -1,0 +1,43 @@
+buildscript {  
+    repositories {  
+        mavenLocal()  
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }  
+        maven { url "http://repo.spring.io/snapshot" }  
+        maven { url "http://repo.spring.io/milestone" }  
+        jcenter()  
+    }  
+    dependencies {  
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")  
+    }  
+}
+apply plugin: 'application'
+mainClassName='com.shan.gradle.web.StudyBootApplication'
+apply plugin: 'org.springframework.boot'  
+  
+archivesBaseName = 'study-boot'  
+  
+  
+ext {
+    springBootVar = '1.5.3.RELEASE'
+}  
+  
+bootRepackage{  
+    enabled = false  
+}  
+  
+build{  
+}  
+  
+dependencies {  
+   compile project(':study-nio')  
+     // spring boot  
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVar"  
+  
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVar"  
+}  
+  
+configurations {  
+    // ������Ҫ���Եİ������ڴ�  
+    //all*.exclude group: 'commons-httpclient'  
+    //all*.exclude group: 'commons-beanutils', module: 'commons-beanutils'  
+}  
